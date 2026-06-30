@@ -8,6 +8,7 @@
 * Production takes goods and population as inputs and gives a good as output.
 * Production needs production buildings.
 * Production buildings created by construction.
+
 ## Population
 * Population is needed for production and reproduction. 
 * People can be worker or unemployed.
@@ -23,7 +24,8 @@
 * Plenty food can lead to increased reproduction.
 ## Construction
 * Construction takes goods and population as inputs and gives production buildings as output.
-* 
+* Start with a number of empty building slots and construction reduces them.
+* You can expand slots using resources
 ## Goods
 * Goods are used by population, construction and production.
 * Goods are produced by production.

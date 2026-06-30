@@ -34,9 +34,26 @@
               "icon": "lucide-file",
               "title": "Game Specs"
             }
+          },
+          {
+            "id": "8d4c836c4e935dc1",
+            "type": "leaf",
+            "state": {
+              "type": "canvas",
+              "state": {
+                "file": "Production Methods.canvas",
+                "viewState": {
+                  "x": 0,
+                  "y": -223.2,
+                  "zoom": 0
+                }
+              },
+              "icon": "lucide-layout-dashboard",
+              "title": "Production Methods"
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -198,12 +215,13 @@
       "bases:Create new base": false
     }
   },
-  "active": "9d5e368bf825f8b1",
+  "active": "8d4c836c4e935dc1",
   "lastOpenFiles": [
-    "Game Design Doc.md",
+    "Production.md",
+    "Production Methods.canvas",
     "Game Specs.md",
+    "Game Design Doc.md",
     "Population.md",
-    "Untitled.canvas",
     "2026-06-28.md"
   ]
 }
