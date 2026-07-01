@@ -1,9 +1,9 @@
 {
 	"nodes":[
-		{"id":"46be00ee505ea469","x":-720,"y":-420,"width":250,"height":60,"type":"text","text":"1 Empty Building Slot"},
-		{"id":"1317e4842890d844","x":-280,"y":-420,"width":250,"height":60,"type":"text","text":"1 O2"},
-		{"id":"1b86eebea6505e80","x":-720,"y":-320,"width":250,"height":60,"type":"text","text":"1 Pop + 1 Empty Building Slot"},
-		{"id":"454be3a9330fb481","x":-280,"y":-320,"width":250,"height":60,"type":"text","text":"2 Basic Food"}
+		{"id":"46be00ee505ea469","type":"text","text":"1 Empty Building Slot","x":-720,"y":-420,"width":250,"height":60},
+		{"id":"1317e4842890d844","type":"text","text":"1 O2","x":-280,"y":-420,"width":250,"height":60},
+		{"id":"1b86eebea6505e80","type":"text","text":"10 Pop + 10 Empty Building Slot","x":-720,"y":-320,"width":250,"height":60},
+		{"id":"454be3a9330fb481","type":"text","text":"1 Basic Food","x":-280,"y":-320,"width":250,"height":60}
 	],
 	"edges":[
 		{"id":"f3e1956af13e8c19","fromNode":"46be00ee505ea469","fromSide":"right","toNode":"1317e4842890d844","toSide":"left","label":"No Building"},

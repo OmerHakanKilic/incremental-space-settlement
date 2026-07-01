@@ -2,23 +2,35 @@
 #include <stdbool.h>
 #include <unistd.h>
 
-int worker_pop_update(int worker_pop, int birth_rate);
-int unemployed_pop_update(int unemployed_pop, int birth_rate);
-int amount_of_o2_update(int amount_of_o2, int population,
-                        int empty_building_slots);
-int amount_of_food_update(int population, int food_production,
-                          int amount_of_food);
+typedef struct {
+  int amount_of_o2;
+  float o2_need;
+  int amount_of_food;
+  float food_need;
+  int worker_population;
+  int unemployed_population;
+  int birth_rate;
+  int empty_building_slots;
+
+} Game;
+
+void worker_pop_update(Game *game);
+void unemployed_pop_update(Game *game);
+void amount_of_o2_update(Game *game);
+void amount_of_food_update(Game *game);
+void apply_death(Game *game);
 
 int main() {
   // Globals
-  int worker_population = 100;
-  int unemployed_population = 50;
-  int birth_rate = 101;
-  int empty_building_slots = 100;
-  int amount_of_o2 = 500;
-  int amount_of_food = 500;
   bool is_paused = false;
   bool is_quit = false;
+  Game game;
+  game.amount_of_food = 500;
+  game.amount_of_o2 = 100;
+  game.birth_rate = 101;
+  game.empty_building_slots = 100;
+  game.unemployed_population = 50;
+  game.worker_population = 50;
 
   // Configs
   initscr();
@@ -51,21 +63,22 @@ int main() {
 
     // Update Game Tick
     if (!is_paused) {
-      worker_population = worker_pop_update(worker_population, birth_rate);
-      unemployed_population =
-          unemployed_pop_update(unemployed_population, birth_rate);
-      amount_of_o2 = amount_of_o2_update(
-          amount_of_o2, (worker_population + unemployed_population),
-          empty_building_slots);
-      amount_of_food = amount_of_food_update(
-          worker_population + unemployed_population,
-          worker_population * (empty_building_slots / 10), amount_of_food);
+      worker_pop_update(&game);
+
+      unemployed_pop_update(&game);
+
+      amount_of_o2_update(&game);
+
+      amount_of_food_update(&game);
+      apply_death(&game);
     }
 
+    wprintw(population_window, "Population");
     mvwprintw(population_window, 1, 1, "Workers: %d, Unemployed: %d",
-              worker_population, unemployed_population);
-    mvwprintw(survival_window, 1, 1, "Amount of O2: %d", amount_of_o2);
-    mvwprintw(survival_window, 2, 1, "Amount of Food: %d", amount_of_food);
+              game.worker_population, game.unemployed_population);
+    wprintw(survival_window, "Survival");
+    mvwprintw(survival_window, 1, 1, "Amount of O2: %d", game.amount_of_o2);
+    mvwprintw(survival_window, 2, 1, "Amount of Food: %d", game.amount_of_food);
 
     wrefresh(survival_window);
     wrefresh(population_window);
@@ -76,27 +89,36 @@ int main() {
   return 0;
 }
 
-int worker_pop_update(int worker_pop, int birth_rate) {
-  int result = 0;
-  result = (worker_pop * birth_rate) / 100;
-  return result;
+void worker_pop_update(Game *game) {
+  game->worker_population = (game->worker_population * game->birth_rate) / 100;
 }
-int unemployed_pop_update(int unemployed_pop, int birth_rate) {
-  int result = 0;
-  result = (unemployed_pop * (birth_rate + 5)) / 100;
-  return result;
+void unemployed_pop_update(Game *game) {
+  game->unemployed_population =
+      (game->unemployed_population * (game->birth_rate + 5)) / 100;
 }
-int amount_of_o2_update(int amount_of_o2, int population,
-                        int empty_building_slots) {
-  int result = amount_of_o2;
-  result += empty_building_slots;
-  result -= population;
-  return result;
+void amount_of_o2_update(Game *game) {
+  game->amount_of_o2 += game->empty_building_slots;
+  game->amount_of_o2 -= game->unemployed_population + game->worker_population;
 }
-int amount_of_food_update(int population, int food_production,
-                          int amount_of_food) {
-  int result = amount_of_food;
-  result += food_production;
-  result -= population;
-  return result;
+void amount_of_food_update(Game *game) {
+  game->amount_of_food +=
+      (game->worker_population / 10 + game->worker_population / 10) / 2;
+  game->amount_of_food -= game->unemployed_population + game->worker_population;
+}
+void apply_death(Game *game) {
+  if (game->unemployed_population >= 0) {
+    if (game->amount_of_food < 0) {
+      game->unemployed_population += game->amount_of_food;
+    }
+    if (game->amount_of_o2 < 0) {
+      game->unemployed_population -= game->amount_of_o2;
+    }
+  } else {
+    if (game->amount_of_food < 0) {
+      game->worker_population += game->amount_of_food;
+    }
+    if (game->amount_of_o2 < 0) {
+      game->worker_population -= game->amount_of_o2;
+    }
+  }
 }
