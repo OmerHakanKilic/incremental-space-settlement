@@ -51,9 +51,21 @@
               "icon": "lucide-layout-dashboard",
               "title": "Production Methods"
             }
+          },
+          {
+            "id": "71ed7ce98aaf88e5",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Drawing 2026-07-01 18.52.53.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2026-07-01 18.52.53.excalidraw"
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -126,7 +138,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Game Design Doc.md",
+                "file": "Excalidraw/Drawing 2026-07-01 18.52.53.excalidraw.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -136,7 +148,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Game Design Doc"
+              "title": "Backlinks for Drawing 2026-07-01 18.52.53.excalidraw"
             }
           },
           {
@@ -201,7 +213,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
+    "width": 200,
     "collapsed": true
   },
   "left-ribbon": {
@@ -212,15 +224,18 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "bases:Create new base": false,
+      "obsidian-excalidraw-plugin:New drawing": false
     }
   },
-  "active": "8d4c836c4e935dc1",
+  "active": "71ed7ce98aaf88e5",
   "lastOpenFiles": [
-    "Production.md",
     "Production Methods.canvas",
-    "Game Specs.md",
+    "Excalidraw/Drawing 2026-07-01 18.52.53.excalidraw.md",
+    "Excalidraw",
     "Game Design Doc.md",
+    "Production.md",
+    "Game Specs.md",
     "Population.md",
     "2026-06-28.md"
   ]

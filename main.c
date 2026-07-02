@@ -52,7 +52,7 @@ int main() {
       is_paused = !is_paused;
       break;
     case 'q':
-      is_quit = !is_quit;
+      is_quit = true;
       break;
     }
 
@@ -106,19 +106,19 @@ void amount_of_food_update(Game *game) {
   game->amount_of_food -= game->unemployed_population + game->worker_population;
 }
 void apply_death(Game *game) {
-  if (game->unemployed_population >= 0) {
+  if (game->unemployed_population > 0) {
     if (game->amount_of_food < 0) {
       game->unemployed_population += game->amount_of_food;
     }
     if (game->amount_of_o2 < 0) {
-      game->unemployed_population -= game->amount_of_o2;
+      game->unemployed_population += game->amount_of_o2;
     }
   } else {
     if (game->amount_of_food < 0) {
       game->worker_population += game->amount_of_food;
     }
     if (game->amount_of_o2 < 0) {
-      game->worker_population -= game->amount_of_o2;
+      game->worker_population += game->amount_of_o2;
     }
   }
 }
